@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG color change (Async)</title>
+    <style>
+        * {
+            background-color: #212121;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .cont {
+            background-color: #ffffff;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <br><br>
+    <div class="cont"></div><br><br>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+
+</body>
+
+<script>
+
+    const cont = document.querySelector(".cont")
+    const startbtn = document.querySelector("#start")
+    const stopbtn = document.querySelector("#stop")
+
+
+    const randomColor = () => {
+        const hex = "0123456789ABCDEF"
+        let color = "#"
+        for (let i = 0; i < 6; i++) {
+            color += hex[Math.floor(Math.random() * 16)]
+        }
+        return color
+    }
+
+    const changeColor = () => {
+        color = randomColor()
+        cont.style.backgroundColor = color
+    }
+
+    startcolor = () => {
+        const c1 = setInterval(changeColor, 500)
+        stopbtn.addEventListener("click", () => {
+            clearInterval(c1)
+        })
+        return c1
+    }
+
+    startbtn.addEventListener("click", () => {
+        startcolor()
+    })
+
+
+
+
+
+
+
+</script>
+
+</html>
